@@ -95,6 +95,55 @@ footer{background:#f5f5f3;color:#171717;border-top:1px solid #e8e8e5;margin-top:
 .features{grid-template-columns:1fr}.row2{grid-template-columns:1fr}
 }
 
+
+/* Theme toggle and oversized cropped brand logo in the hero */
+.actions .theme-toggle{font-size:21px;line-height:1;min-width:42px;display:grid;place-items:center}
+.heroBox{position:relative;overflow:hidden}
+.hero-logo-art{height:320px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.hero-logo-art img{display:block;width:min(125%,620px);height:390px;object-fit:contain;transform:translateX(-2%) scale(1.16);filter:none}
+.hero-logo-art span{position:absolute;bottom:6px;right:50%;transform:translateX(50%);font-size:11px;letter-spacing:3px;color:#777;white-space:nowrap}
+@media(max-width:600px){.hero-logo-art{height:210px;margin-top:2px}.hero-logo-art img{height:260px;width:115%;transform:translateY(5px) scale(1.12)}.hero-logo-art span{bottom:0;font-size:9px}}
+/* Optional dark storefront theme */
+body.dark-mode{background:#0d1110;color:#f1f3f1;background-image:radial-gradient(ellipse at 50% 0%,#202a25 0%,#0d1110 65%)}
+body.dark-mode .top{background:#080b09;color:#e9eee9}
+body.dark-mode .header{background:#101512f5;border-color:#2c3a31}
+body.dark-mode .brand,body.dark-mode .nav a{color:#f2f4f1}
+body.dark-mode .search{background:#171d19;border-color:#37443b}
+body.dark-mode .search input{color:#fff}
+body.dark-mode .search input::placeholder{color:#a2aaa3}
+body.dark-mode .iconbtn{background:#171d19;color:#f1f3ef;border-color:#37443b}
+body.dark-mode .heroBox{background:#171d19;color:#f4f5f2}
+body.dark-mode .hero h1,body.dark-mode .hero h1 span{color:#fff}
+body.dark-mode .hero p{color:#c2c9c2}
+body.dark-mode .eyebrow{color:#d4bd83}
+body.dark-mode .cta{background:#f2f0e9;color:#111;border-color:#f2f0e9}
+body.dark-mode .hero-logo-art span{color:#c5cbc5}
+body.dark-mode .sectionhead h2{color:#f4f5f2}
+body.dark-mode .sectionhead p,body.dark-mode .desc{color:#adb6ae}
+body.dark-mode .filter{background:#171d19;color:#e8ece8;border-color:#37443b}
+body.dark-mode .filter.active{background:#f2f0e9;color:#111;border-color:#f2f0e9}
+body.dark-mode .product{background:#101512}
+body.dark-mode .photo{background:#1b211d;border-color:#2a332c}
+body.dark-mode .photo .empty{color:#aeb6ae}
+body.dark-mode .tag{background:#101512;color:#f1f3ef;border:1px solid #343e36}
+body.dark-mode .heart{background:#101512;color:#fff;border-color:#343e36}
+body.dark-mode .photo-thumbs{background:#101512}
+body.dark-mode .photo-thumb{background:#1b211d;border-color:#37443b}
+body.dark-mode .pbody h3,body.dark-mode .price{color:#f4f5f2}
+body.dark-mode .add{background:#f2f0e9;color:#111;border-color:#f2f0e9}
+body.dark-mode .features .feature{background:#151b17;border-color:#2d382f}
+body.dark-mode .feature strong{color:#f4f5f2}
+body.dark-mode .feature span{color:#b3bcb4}
+body.dark-mode footer{background:#080b09;color:#f2f4f1;border-color:#2d382f}
+body.dark-mode footer p{color:#b3bcb4}
+body.dark-mode .panel{background:#151b17;color:#f2f4f1;border-color:#364238}
+body.dark-mode .field input,body.dark-mode .field select,body.dark-mode .field textarea{background:#0d1110;color:#fff;border-color:#37443b}
+body.dark-mode .secondary,body.dark-mode .close{background:#202720;color:#f2f4f1;border-color:#37443b}
+body.dark-mode .notice{background:#22251e;border-color:#454534;color:#e4e5dc}
+body.dark-mode .cartitem{border-color:#303a32}
+body.dark-mode .cartitem button{background:#34211e;color:#ffb8ae}
+body.dark-mode .emptymsg{color:#adb6ae}
+
 </style>
 </head>
 <body>
@@ -102,10 +151,10 @@ footer{background:#f5f5f3;color:#171717;border-top:1px solid #e8e8e5;margin-top:
 <header class="header"><div class="headin">
 <a class="brand" href="#" style="text-decoration:none" aria-label="SHIELD BAGS STORE"><div class="brandmark"><img src="assets/shield-logo.png" alt="SHIELD BAGS STORE"></div></a>
 <div class="search"><input id="search" placeholder="دور على الشنطة اللي بتدور عليها..." aria-label="بحث عن المنتجات"><button onclick="renderProducts()">⌕</button></div>
-<div class="actions"><button class="iconbtn" onclick="openWishlist()">♡ <span id="wishCount">0</span></button><button class="iconbtn" onclick="openCart()">🛒 <span id="cartCount">0</span></button></div>
+<div class="actions"><button class="iconbtn theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="تبديل الوضع الليلي" title="تبديل الوضع الليلي">☾</button><button class="iconbtn" onclick="openWishlist()" aria-label="المفضلة">♡ <span id="wishCount">0</span></button><button class="iconbtn" onclick="openCart()" aria-label="سلة المشتريات">🛒 <span id="cartCount">0</span></button></div>
 </div><nav class="nav"><a href="#products">كل المنتجات</a><a href="#products" onclick="setCategory('مدرسي')">شنط مدرسية</a><a href="#products" onclick="setCategory('ظهر')">شنط ظهر</a><a href="#benefits">مميزاتنا</a><a href="#contact">تواصل معنا</a></nav></header>
 <main>
-<section class="hero"><div class="heroBox"><div><div class="eyebrow">SHIELD BAGS STORE</div><h1><span>شنط مميزة</span> لكل الأذواق</h1><p>جودة عالية .. تصاميم عصرية .. وأسعار مناسبة. جهّز شنطتك المفضلة من SHIELD BAGS STORE.</p><a href="#products" class="cta">تسوق المنتجات ←</a></div><div class="heroArt" aria-label="صور شنط حقيقية من المتجر"><div class="bag-showcase"><img src="assets/products/FB_IMG_1792672234943.png" alt="شنطة أطفال باستيل"><img src="assets/products/FB_IMG_1792672321265.png" alt="شنطة سبايدرمان"><img src="assets/products/FB_IMG_1792672806551.png" alt="شنطة ظهر زيتوني"></div><small>صور حقيقية من منتجات SHIELD BAGS STORE</small></div></div></section>
+<section class="hero"><div class="heroBox"><div><div class="eyebrow">SHIELD BAGS STORE</div><h1><span>شنط مميزة</span> لكل الأذواق</h1><p>جودة عالية .. تصاميم عصرية .. وأسعار مناسبة. جهّز شنطتك المفضلة من SHIELD BAGS STORE.</p><a href="#products" class="cta">تسوق المنتجات ←</a></div><div class="heroArt hero-logo-art" aria-label="شعار SHIELD BAGS STORE"><img src="assets/shield-logo.png" alt="شعار SHIELD BAGS STORE"><span>SHIELD BAGS STORE</span></div></div></section>
 <section class="wrap" id="promotions"><div class="sectionhead"><div><h2>عروض المتجر</h2><p>تابع عروض SHIELD BAGS STORE</p></div></div><div class="promo-grid"><a class="promo-card" href="https://wa.me/201000379944?text=أريد الاستفسار عن عرض 50%25" target="_blank" rel="noopener"><img src="assets/promos/offer-50-percent.jpg" alt="عرض خصم 50 بالمئة على الشنط"></a><a class="promo-card" href="https://wa.me/201000379944?text=أريد الاستفسار عن عرض اشتري 3 واحصل على 1 مجانا" target="_blank" rel="noopener"><img src="assets/promos/offer-buy-3-get-1.jpg" alt="عرض اشتري ثلاثة واحصل على واحدة مجانًا"></a></div></section>
 <section class="wrap" id="products"><div class="sectionhead"><div><h2>تسوّق الشنط</h2><p>اكتشف موديلات SHIELD BAGS STORE</p></div><span id="resultCount" style="font-size:12px;color:var(--muted)"></span></div>
 <div class="filters"><button class="filter active" onclick="setCategory('الكل',this)">كل المنتجات</button><button class="filter" onclick="setCategory('مدرسي',this)">شنط مدرسية</button><button class="filter" onclick="setCategory('ظهر',this)">شنط ظهر</button><button class="filter" onclick="document.getElementById('promotions').scrollIntoView({behavior:'smooth'})">العروض</button></div>
@@ -137,6 +186,20 @@ let cart=JSON.parse(localStorage.getItem('shieldCart')||'[]'),wishlist=JSON.pars
 const money=n=>n===null||n===''||n===undefined?'السعر يُحدد قريبًا':Number(n).toLocaleString('ar-EG')+' ج.م';
 function persist(){localStorage.setItem('shieldProducts',JSON.stringify(products));localStorage.setItem('shieldCart',JSON.stringify(cart));localStorage.setItem('shieldWishlist',JSON.stringify(wishlist));updateCounts()}
 function updateCounts(){document.getElementById('cartCount').textContent=cart.reduce((a,x)=>a+x.qty,0);document.getElementById('wishCount').textContent=wishlist.length}
+
+function toggleTheme(){
+  const dark=document.body.classList.toggle('dark-mode');
+  const btn=document.getElementById('themeToggle');
+  if(btn){btn.textContent=dark?'☀':'☾';btn.title=dark?'التحويل للوضع الفاتح':'التحويل للوضع الداكن';btn.setAttribute('aria-label',btn.title);}
+  try{localStorage.setItem('shield-bags-theme',dark?'dark':'light')}catch(e){}
+}
+(function initTheme(){
+  let saved='light';try{saved=localStorage.getItem('shield-bags-theme')||'light'}catch(e){}
+  if(saved==='dark')document.body.classList.add('dark-mode');
+  const btn=document.getElementById('themeToggle');
+  if(btn){const dark=document.body.classList.contains('dark-mode');btn.textContent=dark?'☀':'☾';btn.title=dark?'التحويل للوضع الفاتح':'التحويل للوضع الداكن';btn.setAttribute('aria-label',btn.title);}
+})();
+
 function renderProducts(){const q=document.getElementById('search').value.trim().toLowerCase();const list=products.filter(p=>(category==='الكل'||p.category===category)&&(!q||(p.name+' '+p.description+' '+p.category).toLowerCase().includes(q)));document.getElementById('resultCount').textContent=list.length+' منتجات';document.getElementById('productsGrid').innerHTML=list.length?list.map(p=>{const pics=(Array.isArray(p.images)&&p.images.length?p.images:(p.image?[p.image]:[]));const main=p.image||pics[0]||'';return '<article class="product"><div class="photo">'+(main?'<img class="product-main-image" src="'+esc(main)+'" alt="'+esc(p.name)+'">':'<div class="empty">الصورة غير متاحة</div>')+'<span class="tag">'+esc(p.tag||p.category||'منتج')+'</span><button class="heart" aria-label="إضافة للمفضلة" onclick="toggleWish(\''+p.id+'\')">'+(wishlist.includes(p.id)?'♥':'♡')+'</button></div>'+(pics.length>1?'<div class="photo-thumbs">'+pics.map((src,i)=>'<button class="photo-thumb'+(src===main?' active':'')+'" type="button" title="عرض صورة '+(i+1)+'" onclick="setProductImage(event,\''+p.id+'\',\''+esc(src)+'\')"><img src="'+esc(src)+'" alt=""></button>').join('')+'</div>':'')+'<div class="pbody"><h3>'+esc(p.name)+'</h3><div class="desc">'+esc(p.description||'')+'</div><div class="price">'+money(p.price)+'</div><button class="add" onclick="addCart(\''+p.id+'\')">أضف إلى السلة</button></div></article>'}).join(''):'<div class="emptymsg">مفيش منتجات مطابقة للبحث حاليًا.</div>'}
 function setProductImage(e,id,url){e.preventDefault();e.stopPropagation();const card=e.currentTarget.closest('.product');if(!card)return;const img=card.querySelector('.product-main-image');if(img)img.src=url;card.querySelectorAll('.photo-thumb').forEach(b=>b.classList.toggle('active',b===e.currentTarget));}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}

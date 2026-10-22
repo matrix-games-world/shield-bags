@@ -34,6 +34,14 @@ footer{background:#071019;border-top:1px solid #39ff1450}footer p{color:#aab8c4}
 .notice{background:#142318;border-color:#315c36;color:#dcebdc}.emptymsg{color:#a6b4c0}
 @media(max-width:600px){.heroBox{grid-template-columns:1fr;padding:28px 20px;min-height:270px}.heroArt{display:block;font-size:90px;opacity:.9}.brandmark{width:78px;height:58px}}
 
+
+/* Bag showcase treatment */
+.bag-showcase{display:flex;align-items:end;justify-content:center;gap:clamp(0px,1.5vw,22px);font-size:clamp(64px,9vw,120px);filter:drop-shadow(0 14px 12px #0007)}
+.bag-showcase span{display:inline-block;background:linear-gradient(145deg,#182c3a,#0a1822);border:1px solid #39ff1470;border-radius:22px;padding:12px;transform:rotate(-5deg)}
+.bag-showcase span:nth-child(2){font-size:1.2em;transform:translateY(-16px);border-color:#39ff14}
+.bag-showcase span:nth-child(3){transform:rotate(5deg)}
+.heroArt small{display:block;font-size:13px;color:#aab8c4;margin-top:22px;text-align:center;letter-spacing:1px}
+
 </style>
 </head>
 <body>
@@ -44,7 +52,7 @@ footer{background:#071019;border-top:1px solid #39ff1450}footer p{color:#aab8c4}
 <div class="actions"><button class="iconbtn" onclick="openWishlist()">♡ <span id="wishCount">0</span></button><button class="iconbtn" onclick="openCart()">🛒 <span id="cartCount">0</span></button></div>
 </div><nav class="nav"><a href="#products">كل المنتجات</a><a href="#products" onclick="setCategory('مدرسي')">شنط مدرسية</a><a href="#products" onclick="setCategory('ظهر')">شنط ظهر</a><a href="#benefits">مميزاتنا</a><a href="#contact">تواصل معنا</a></nav></header>
 <main>
-<section class="hero"><div class="heroBox"><div><div class="eyebrow">SHIELD BAGS STORE</div><h1><span>شنط مميزة</span> لكل الأذواق</h1><p>جودة عالية .. تصاميم عصرية .. وأسعار مناسبة. جهّز شنطتك المفضلة من SHIELD BAGS STORE.</p><a href="#products" class="cta">تسوق المنتجات ←</a></div><div class="heroArt">🎒 🎒</div></div></section>
+<section class="hero"><div class="heroBox"><div><div class="eyebrow">SHIELD BAGS STORE</div><h1><span>شنط مميزة</span> لكل الأذواق</h1><p>جودة عالية .. تصاميم عصرية .. وأسعار مناسبة. جهّز شنطتك المفضلة من SHIELD BAGS STORE.</p><a href="#products" class="cta">تسوق المنتجات ←</a></div><div class="heroArt" aria-label="شنط مدرسية وشنط ظهر"><div class="bag-showcase"><span>🎒</span><span>🎒</span><span>🎒</span></div><small>شنط مدرسية • شنط ظهر • اختيارات مميزة</small></div></div></section>
 <section class="wrap" id="products"><div class="sectionhead"><div><h2>أحدث المنتجات</h2><p>اختار الشنطة المناسبة ليك</p></div><span id="resultCount" style="font-size:12px;color:var(--muted)"></span></div>
 <div class="filters"><button class="filter active" onclick="setCategory('الكل',this)">كل المنتجات</button><button class="filter" onclick="setCategory('مدرسي',this)">شنط مدرسية</button><button class="filter" onclick="setCategory('ظهر',this)">شنط ظهر</button><button class="filter" onclick="setCategory('عروض',this)">العروض</button></div>
 <div class="products" id="productsGrid"></div>

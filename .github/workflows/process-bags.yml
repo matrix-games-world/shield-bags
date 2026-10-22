@@ -1,5 +1,9 @@
 name: Prepare SHIELD BAGS product images
 
+concurrency:
+  group: prepare-bag-images-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: [main]
@@ -20,6 +24,7 @@ jobs:
       - name: Check out store repository
         uses: actions/checkout@v4
         with:
+          ref: main
           persist-credentials: true
 
       - name: Set up Python
@@ -39,6 +44,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
           git add assets/products assets/promos assets/shield-logo.png assets/shield-logo-original-ink.png
           if git diff --cached --quiet; then
             echo "No processed images changed."

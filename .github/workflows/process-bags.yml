@@ -1,0 +1,49 @@
+name: Prepare SHIELD BAGS product images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "FB_IMG_*.jpg"
+      - "لوجو.jpg"
+      - "scripts/process_bag_images.py"
+      - ".github/workflows/process-bags.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  prepare-images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out store repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install image tools
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "rembg[cpu]" Pillow
+
+      - name: Remove backgrounds and enhance photos
+        run: python scripts/process_bag_images.py
+
+      - name: Save prepared images to the repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/products assets/promos assets/shield-logo.png assets/shield-logo-original-ink.png
+          if git diff --cached --quiet; then
+            echo "No processed images changed."
+          else
+            git commit -m "Prepare product images with transparent backgrounds"
+            git push
+          fi

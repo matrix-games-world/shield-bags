@@ -59,6 +59,9 @@ def fit_on_square(img, size=1000):
 def process_logo():
     src = Image.open("لوجو.jpg")
     src = ImageOps.exif_transpose(src).convert("RGB")
+    # Crop the thin photo border before removing the white paper background.
+    mx, my = int(src.width * 0.035), int(src.height * 0.035)
+    src = src.crop((mx, my, src.width - mx, src.height - my))
     # Make the white paper transparent while retaining anti-aliased logo strokes.
     gray = ImageOps.grayscale(src)
     alpha = gray.point(lambda v: 255 if v < 45 else (0 if v > 247 else int((247-v)*255/202)))

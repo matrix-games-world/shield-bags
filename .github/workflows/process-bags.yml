@@ -1,7 +1,7 @@
 name: Prepare SHIELD BAGS product images
 
 concurrency:
-  group: prepare-bag-images-${{ github.ref }}
+  group: prepare-bag-images-v3-${{ github.ref }}
   cancel-in-progress: true
 
 on:

@@ -200,6 +200,41 @@ function toggleTheme(){
   if(btn){const dark=document.body.classList.contains('dark-mode');btn.textContent=dark?'☀':'☾';btn.title=dark?'التحويل للوضع الفاتح':'التحويل للوضع الداكن';btn.setAttribute('aria-label',btn.title);}
 })();
 
+function showHome(){
+ document.getElementById('homeView').classList.remove('hidden');
+ document.getElementById('productDetail').classList.add('hidden');
+ history.replaceState(null,'',location.pathname+location.search);
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+const originalRenderProducts=renderProducts;
+renderProducts=function(){
+ originalRenderProducts();
+ const q=document.getElementById('search').value.trim().toLowerCase();
+ const list=products.filter(p=>(category==='الكل'||p.category===category)&&(!q||(p.name+' '+p.description+' '+p.category).toLowerCase().includes(q)));
+ document.querySelectorAll('#productsGrid .product').forEach((card,i)=>{card.style.cursor='pointer';card.addEventListener('click',function(e){if(e.target.closest('button'))return;if(list[i])openProduct(list[i].id);});});
+};
+function openProduct(id){
+ const p=products.find(x=>x.id===id);if(!p)return;
+ const pics=(Array.isArray(p.images)&&p.images.length?p.images:(p.image?[p.image]:[]));
+ const first=p.image||pics[0]||'';
+ const view=document.getElementById('productDetail');view.replaceChildren();
+ document.getElementById('homeView').classList.add('hidden');view.classList.remove('hidden');
+ const back=document.createElement('button');back.className='detail-back';back.textContent='← رجوع للمنتجات';back.onclick=showHome;view.appendChild(back);
+ const layout=document.createElement('div');layout.className='detail-layout';view.appendChild(layout);
+ const gallery=document.createElement('div');layout.appendChild(gallery);
+ const main=document.createElement('div');main.className='detail-main-photo';gallery.appendChild(main);
+ const mainImg=document.createElement('img');mainImg.id='detailMainImage';mainImg.alt=p.name;mainImg.src=first;main.appendChild(mainImg);
+ const thumbs=document.createElement('div');thumbs.className='detail-thumbs';gallery.appendChild(thumbs);
+ pics.forEach((src,i)=>{const b=document.createElement('button');if(src===first)b.className='active';const im=document.createElement('img');im.src=src;im.alt='صورة '+(i+1);b.appendChild(im);b.onclick=()=>{mainImg.src=src;thumbs.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active')};thumbs.appendChild(b)});
+ const info=document.createElement('div');info.className='detail-info';layout.appendChild(info);
+ const cat=document.createElement('div');cat.className='detail-category';cat.textContent=p.category||'منتج';info.appendChild(cat);
+ const title=document.createElement('h1');title.textContent=p.name;info.appendChild(title);
+ const price=document.createElement('div');price.className='price';price.textContent=money(p.price);info.appendChild(price);
+ const desc=document.createElement('p');desc.textContent=p.description||'تفاصيل المنتج ستُضاف قريبًا.';info.appendChild(desc);
+ const add=document.createElement('button');add.className='add detail-add';add.textContent='أضف إلى السلة';add.onclick=()=>addCart(p.id);info.appendChild(add);
+ const meta=document.createElement('p');meta.textContent='عدد الصور المتاحة: '+pics.length;info.appendChild(meta);
+ history.replaceState(null,'','#product='+encodeURIComponent(id));window.scrollTo({top:0,behavior:'smooth'});
+}
 function renderProducts(){const q=document.getElementById('search').value.trim().toLowerCase();const list=products.filter(p=>(category==='الكل'||p.category===category)&&(!q||(p.name+' '+p.description+' '+p.category).toLowerCase().includes(q)));document.getElementById('resultCount').textContent=list.length+' منتجات';document.getElementById('productsGrid').innerHTML=list.length?list.map(p=>{const pics=(Array.isArray(p.images)&&p.images.length?p.images:(p.image?[p.image]:[]));const main=p.image||pics[0]||'';return '<article class="product"><div class="photo">'+(main?'<img class="product-main-image" src="'+esc(main)+'" alt="'+esc(p.name)+'">':'<div class="empty">الصورة غير متاحة</div>')+'<span class="tag">'+esc(p.tag||p.category||'منتج')+'</span><button class="heart" aria-label="إضافة للمفضلة" onclick="toggleWish(\''+p.id+'\')">'+(wishlist.includes(p.id)?'♥':'♡')+'</button></div>'+(pics.length>1?'<div class="photo-thumbs">'+pics.map((src,i)=>'<button class="photo-thumb'+(src===main?' active':'')+'" type="button" title="عرض صورة '+(i+1)+'" onclick="setProductImage(event,\''+p.id+'\',\''+esc(src)+'\')"><img src="'+esc(src)+'" alt=""></button>').join('')+'</div>':'')+'<div class="pbody"><h3>'+esc(p.name)+'</h3><div class="desc">'+esc(p.description||'')+'</div><div class="price">'+money(p.price)+'</div><button class="add" onclick="addCart(\''+p.id+'\')">أضف إلى السلة</button></div></article>'}).join(''):'<div class="emptymsg">مفيش منتجات مطابقة للبحث حاليًا.</div>'}
 function setProductImage(e,id,url){e.preventDefault();e.stopPropagation();const card=e.currentTarget.closest('.product');if(!card)return;const img=card.querySelector('.product-main-image');if(img)img.src=url;card.querySelectorAll('.photo-thumb').forEach(b=>b.classList.toggle('active',b===e.currentTarget));}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}

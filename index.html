@@ -320,6 +320,14 @@ body.dark-mode .promo-card img{opacity:.92!important}
  .detail-main-photo{height:clamp(330px,100vw,500px)!important}
 }
 
+
+/* New custom promo artwork uses a low, wide banner ratio that matches the dark storefront */
+.promo-carousel{max-width:1120px!important}
+.promo-card{height:auto!important;min-height:0!important;aspect-ratio:3.64/1!important;background:#151b1e!important;overflow:hidden!important}
+.promo-card img{width:100%!important;height:100%!important;max-height:none!important;object-fit:cover!important;display:block;opacity:1!important}
+body.dark-mode .promo-card img{opacity:1!important}
+@media(max-width:700px){.promo-card{aspect-ratio:3.15/1!important}.promo-carousel{padding-left:0!important;padding-right:0!important}}
+
 </style>
 </head>
 <body>
@@ -331,7 +339,7 @@ body.dark-mode .promo-card img{opacity:.92!important}
 </div><nav class="nav"><a href="#home" onclick="showHome()">الرئيسية</a><a href="#products">كل المنتجات</a><a href="#products" onclick="setCategory('مدرسي')">شنط مدرسية</a><a href="#products" onclick="setCategory('ظهر')">شنط ظهر</a><a href="#benefits">مميزاتنا</a><a href="#contact">تواصل معنا</a></nav></header>
 <main id="homeView">
 <section class="hero"><div class="heroBox"><div><div class="eyebrow">SHIELD BAGS STORE</div><h1><span>شنط مميزة</span> لكل الأذواق</h1><p>جودة عالية .. تصاميم عصرية .. وأسعار مناسبة. جهّز شنطتك المفضلة من SHIELD BAGS STORE.</p><a href="#products" class="cta">تسوق المنتجات ←</a></div><div class="heroArt" aria-label="صور شنط حقيقية من المتجر"><div class="bag-showcase"><img src="assets/products/FB_IMG_1792672234943.png" alt="شنطة أطفال باستيل"><img src="assets/products/FB_IMG_1792672321265.png" alt="شنطة أطفال سبايدرمان"><img src="assets/products/FB_IMG_1792672806551.png" alt="شنطة ظهر زيتوني"></div><small>صور حقيقية من منتجات SHIELD BAGS STORE</small></div></div></section>
-<section class="wrap" id="promotions"><div class="sectionhead"><div><h2>عروض المتجر</h2><p>تابع عروض SHIELD BAGS STORE</p></div></div><div class="promo-carousel"><button class="promo-arrow promo-prev" type="button" onclick="changePromo(-1)" aria-label="العرض السابق">‹</button><a class="promo-card" id="promoSlide" href="https://wa.me/201000379944?text=أريد الاستفسار عن عرض 50%25" target="_blank" rel="noopener"><img id="promoImage" src="assets/promos/offer-50-percent.jpg" alt="عرض خصم 50 بالمئة على الشنط"></a><button class="promo-arrow promo-next" type="button" onclick="changePromo(1)" aria-label="العرض التالي">›</button><div class="promo-dots" id="promoDots"><button class="active" onclick="showPromo(0)" aria-label="العرض الأول"></button><button onclick="showPromo(1)" aria-label="العرض الثاني"></button></div></div></section>
+<section class="wrap" id="promotions"><div class="sectionhead"><div><h2>عروض المتجر</h2><p>تابع عروض SHIELD BAGS STORE</p></div></div><div class="promo-carousel"><button class="promo-arrow promo-prev" type="button" onclick="changePromo(-1)" aria-label="العرض السابق">‹</button><a class="promo-card" id="promoSlide" href="https://wa.me/201000379944?text=أريد الاستفسار عن عرض 50%25" target="_blank" rel="noopener"><img id="promoImage" src="assets/promos/offer-50-percent.svg" alt="عرض خصم 50 بالمئة على الشنط"></a><button class="promo-arrow promo-next" type="button" onclick="changePromo(1)" aria-label="العرض التالي">›</button><div class="promo-dots" id="promoDots"><button class="active" onclick="showPromo(0)" aria-label="العرض الأول"></button><button onclick="showPromo(1)" aria-label="العرض الثاني"></button></div></div></section>
 <section class="wrap" id="products"><div class="sectionhead"><div><h2>تسوّق الشنط</h2><p>اكتشف موديلات SHIELD BAGS STORE</p></div><span id="resultCount" style="font-size:12px;color:var(--muted)"></span></div>
 <div class="filters"><button class="filter active" onclick="setCategory('الكل',this)">كل المنتجات</button><button class="filter" onclick="setCategory('مدرسي',this)">شنط مدرسية</button><button class="filter" onclick="setCategory('ظهر',this)">شنط ظهر</button><button class="filter" onclick="document.getElementById('promotions').scrollIntoView({behavior:'smooth'})">العروض</button></div>
 <div class="products" id="productsGrid"></div>
@@ -442,8 +450,8 @@ function editProduct(id){let p=products.find(x=>x.id===id);if(!p)return;let f=do
 function deleteProduct(id){if(confirm('متأكد إنك عايز تحذف المنتج؟')){products=products.filter(p=>p.id!==id);persist();renderProducts();renderAdminProducts()}}
 
 const promoItems=[
- {src:'assets/promos/offer-50-percent.jpg',alt:'عرض خصم 50 بالمئة على الشنط',url:'https://wa.me/201000379944?text=أريد الاستفسار عن عرض 50%25'},
- {src:'assets/promos/offer-buy-3-get-1.jpg',alt:'عرض اشتري ثلاثة واحصل على واحدة مجانًا',url:'https://wa.me/201000379944?text=أريد الاستفسار عن عرض اشتري 3 واحصل على 1 مجانا'}
+ {src:'assets/promos/offer-50-percent.svg',alt:'عرض خصم 50 بالمئة على الشنط',url:'https://wa.me/201000379944?text=أريد الاستفسار عن عرض 50%25'},
+ {src:'assets/promos/offer-buy-3-get-1.svg',alt:'عرض اشتري ثلاثة واحصل على واحدة مجانًا',url:'https://wa.me/201000379944?text=أريد الاستفسار عن عرض اشتري 3 واحصل على 1 مجانا'}
 ];
 let promoIndex=0;
 function showPromo(i){

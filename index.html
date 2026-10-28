@@ -328,6 +328,124 @@ body.dark-mode .promo-card img{opacity:.92!important}
 body.dark-mode .promo-card img{opacity:1!important}
 @media(max-width:700px){.promo-card{aspect-ratio:3.15/1!important}.promo-carousel{padding-left:0!important;padding-right:0!important}}
 
+
+/* Cinematic SHIELD BAGS visual theme based on the supplied reference */
+:root{--green:#c9e4b6;--green2:#e0efcf;--cream:#171c1e;--ink:#f4f5f1;--muted:#b8bfbc;--line:#3d4648;--gold:#d7e8bf}
+html{scroll-behavior:smooth}
+body{background:#121719!important;color:#f4f5f1!important;background-image:radial-gradient(ellipse at 52% 0%,#3a454a 0%,#1b2225 44%,#0d1113 100%)!important}
+body:before{background-image:url("assets/shield-logo.png")!important;background-position:center 35%!important;background-size:min(78vw,1050px) auto!important;opacity:.055!important;filter:grayscale(1)!important}
+body:not(.dark-mode):before{background-image:url("assets/shield-logo-original-ink.png")!important;opacity:.035!important}
+.top{display:none!important}
+.header{position:absolute!important;top:0;left:0;right:0;background:linear-gradient(180deg,#141b1eF2,#141b1eB8)!important;border-bottom:1px solid #ffffff14!important;backdrop-filter:blur(12px);z-index:20}
+.headin{max-width:1200px!important;padding:12px 20px!important;gap:22px!important}
+.brand{color:#fff!important;min-width:170px!important}
+.brandmark{width:58px!important;height:46px!important}
+.brandmark img{filter:brightness(0) invert(1)!important;opacity:.97}
+.search{background:#ffffff16!important;border:1px solid #ffffff28!important;border-radius:28px!important;max-width:500px}
+.search input{color:#fff!important;padding:11px 16px}
+.search input::placeholder{color:#d6d9d5!important}
+.search button{color:#fff!important}
+.iconbtn{background:transparent!important;color:#f4f5f1!important;border:0!important;border-radius:50%!important;padding:8px 10px!important;font-size:21px}
+.nav{max-width:1200px!important;padding:0 20px 12px!important;gap:28px!important;margin-top:0}
+.nav a{color:#e5e8e4!important;font-size:13px!important}
+.nav a:hover{color:#c9e4b6!important}
+main#homeView{padding-top:76px}
+.hero{max-width:none!important;margin:0!important;padding:0!important}
+.heroBox{position:relative;isolation:isolate;overflow:hidden;min-height:420px!important;padding:130px max(calc((100vw - 1170px)/2),28px) 38px!important;border:0!important;border-radius:0!important;background:radial-gradient(ellipse at 73% 50%,#555e61 0%,#30383b 30%,#1a2225 65%,#111719 100%)!important;grid-template-columns:.85fr 1.35fr!important;gap:20px}
+.heroBox:before{content:"";position:absolute;inset:-18% 20% -24% 20%;z-index:-1;background:url("assets/shield-logo.png") center/contain no-repeat;opacity:.09!important;filter:grayscale(1);pointer-events:none}
+.heroBox:after{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,#111719 0%,#11171917 45%,#11171954 100%);pointer-events:none}
+.heroBox>div:first-child{grid-column:1;grid-row:1;align-self:center;max-width:420px}
+.eyebrow{font-size:clamp(30px,3.5vw,48px)!important;letter-spacing:7px;color:#fff!important;font-weight:900}
+.hero h1{font-size:clamp(20px,2vw,29px)!important;margin:2px 0 10px!important;letter-spacing:5px;color:#fff!important}
+.hero h1 span{color:#fff!important}
+.hero p{color:#d7dbd7!important;font-size:12px!important;letter-spacing:3px;line-height:2}
+.cta{background:transparent!important;color:#fff!important;border:1px solid #f5f5f1!important;border-radius:28px!important;padding:11px 24px!important;font-size:13px}
+.heroArt{grid-column:2;grid-row:1;align-self:end;filter:none!important;text-align:center;min-width:0}
+.bag-showcase{height:310px;display:flex;align-items:flex-end;justify-content:center;gap:0;position:relative;isolation:isolate}
+.bag-showcase:after{content:"";position:absolute;bottom:0;left:3%;right:3%;height:20px;background:linear-gradient(180deg,#777d7d,#242a2d);border-radius:50%;filter:blur(9px);z-index:-1}
+.bag-showcase img{width:33%;height:82%;object-fit:contain;padding:0 2px;filter:drop-shadow(0 18px 13px #0009);transition:transform .3s ease}
+.bag-showcase img:nth-child(1){height:70%;transform:translateX(9%) rotate(-3deg);z-index:1}
+.bag-showcase img:nth-child(2){height:100%;z-index:2}
+.bag-showcase img:nth-child(3){height:76%;transform:translateX(-8%) rotate(3deg);z-index:1}
+.heroArt small{display:none}
+.wrap{max-width:1200px!important;margin:23px auto!important;padding:0 20px!important}
+.sectionhead{margin-bottom:12px!important}
+.sectionhead h2{font-size:17px!important;color:#f4f5f1!important}
+.sectionhead p{display:none}
+#promotions{margin-top:0!important}
+.promo-carousel{max-width:none!important;padding:0 0 24px!important;margin:0 auto!important}
+.promo-card{height:auto!important;min-height:0!important;aspect-ratio:3.64/1!important;display:flex!important;align-items:center!important;justify-content:center!important;background:linear-gradient(90deg,#151a1c,#343b3e,#151a1c)!important;border:1px solid #50585a!important;border-radius:14px!important;box-shadow:0 12px 30px #0004!important;overflow:hidden!important}
+.promo-card img{width:100%!important;height:100%!important;max-height:none!important;object-fit:cover!important;opacity:1!important}
+.promo-arrow{background:#15191bcc!important;color:#fff!important;border:1px solid #ffffff70!important;width:34px!important;height:34px!important}
+.promo-prev{left:12px!important}.promo-next{right:12px!important}
+.promo-dots{bottom:4px!important}
+.promo-dots button.active{background:#d4e9bc!important}
+#products{margin-top:2px!important}
+.filters{gap:7px!important}
+.filter{background:#1c2224!important;color:#d7dbd7!important;border-color:#3d4546!important}
+.filter.active{background:#d1e6b9!important;color:#171c19!important;border-color:#d1e6b9!important}
+.products{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:14px!important}
+.product{background:linear-gradient(180deg,#1a2022,#151a1c)!important;border:1px solid #3a4244!important;border-radius:12px!important;box-shadow:0 8px 20px #0002!important;overflow:hidden!important}
+.product:hover{border-color:#84947b!important;box-shadow:0 14px 30px #0005!important}
+.photo{height:clamp(170px,14vw,230px)!important;background:radial-gradient(ellipse at 50% 35%,#333a3d,#1a2022 72%)!important;padding:8px!important}
+.photo img.product-main-image{object-fit:contain!important;object-position:center!important;padding:2px!important;filter:drop-shadow(0 14px 11px #0009)!important}
+.tag{top:9px!important;right:9px!important;background:#34472f!important;color:#e3f4d7!important;border:1px solid #8da47a!important;font-size:10px!important;padding:3px 7px!important}
+.heart{background:#111a!important;color:#f4f4ef!important;border:1px solid #ffffff28!important}
+.photo-thumbs{background:#141a1c!important;border-color:#343c3e!important}
+.photo-thumb{background:#101416!important;border-color:#3c4446!important}
+.pbody{padding:10px!important}
+.pbody h3{font-size:12px!important;color:#f2f3ef!important}
+.desc{color:#aeb5b2!important;font-size:11px!important}
+.price{font-size:13px!important;color:#cce5b3!important}
+.add{background:#d2e8bb!important;color:#1a2119!important;border-color:#d2e8bb!important}
+.features .feature{background:#171d1f!important;border-color:#333b3d!important}
+.feature strong{color:#f4f5f1!important}.feature span{color:#b8bfbc!important}
+footer{background:#0b0f10!important;border-top:1px solid #333b3d!important}
+.mobile-bottom-nav{background:#111719!important;border-color:#333b3d!important}
+.bottom-item{color:#e6e8e4!important}
+.product-detail-view{color:#f5f5f1!important}
+.detail-main-photo{background:radial-gradient(ellipse at 50% 35%,#333a3d,#171d1f 75%)!important;border-color:#3a4244!important}
+.detail-thumbs button{background:#1a2022!important;border-color:#3a4244!important}
+.detail-info h1{color:#fff!important}.detail-info p{color:#b5b9b8!important}
+.detail-back{background:#202729!important;color:#fff!important;border-color:#3a4244!important}
+.panel{background:#171d1f!important;color:#f4f5f1!important;border-color:#41494b!important}
+.field input,.field select,.field textarea{background:#101517!important;color:#fff!important;border-color:#3c4547!important}
+.secondary,.close{background:#202729!important;color:#fff!important;border-color:#41494b!important}
+.notice{background:#222b26!important;color:#dfe8d9!important;border-color:#414f43!important}
+.cartitem{border-color:#3a4244!important}
+body.dark-mode .promo-card img{opacity:1!important}
+@media(max-width:1050px){.products{grid-template-columns:repeat(4,minmax(0,1fr))!important}.heroBox{min-height:390px!important}.bag-showcase{height:275px}}
+@media(max-width:700px){
+ .header{position:sticky!important;top:0!important}
+ .headin{padding:9px 12px!important;gap:7px!important}
+ .brand{min-width:0!important;flex:0 0 auto}
+ .brandmark{width:42px!important;height:37px!important}
+ .search{order:0!important;flex:1!important;min-width:80px}
+ .actions{gap:0!important}
+ .iconbtn{font-size:17px!important;padding:5px!important}
+ .nav{padding:0 13px 10px!important;gap:18px!important}
+ main#homeView{padding-top:0}
+ .heroBox{padding:30px 16px 18px!important;min-height:0!important;grid-template-columns:1fr!important;gap:0!important;background:radial-gradient(ellipse at 50% 38%,#41494c 0%,#242c30 48%,#121719 100%)!important}
+ .heroBox>div:first-child{grid-column:1;grid-row:1;text-align:left;max-width:none}
+ .eyebrow{font-size:27px!important;letter-spacing:4px!important}
+ .hero h1{font-size:17px!important;letter-spacing:2px!important}
+ .hero p{font-size:10px!important;letter-spacing:1px!important;margin:6px 0!important}
+ .cta{padding:8px 16px!important;margin-top:4px!important}
+ .heroArt{grid-column:1;grid-row:2;margin-top:8px}
+ .bag-showcase{height:225px!important}
+ .bag-showcase img{width:35%!important}
+ .wrap{padding:0 12px!important;margin:20px auto!important}
+ .promo-card{aspect-ratio:3.2/1!important}
+ .promo-carousel{padding-bottom:24px!important}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .photo{height:clamp(170px,52vw,235px)!important}
+ .pbody{padding:9px!important}
+ .pbody h3{font-size:12px!important}
+ .price{font-size:13px!important}
+ .features{grid-template-columns:1fr!important}
+}
+@media(max-width:380px){.iconbtn{font-size:15px!important;padding:4px!important}.brandmark{width:36px!important}.bag-showcase{height:200px!important}.search input{padding:9px 10px!important;font-size:12px!important}}
+
 </style>
 </head>
 <body>
@@ -338,7 +456,7 @@ body.dark-mode .promo-card img{opacity:1!important}
 <div class="actions"><button class="iconbtn theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="تبديل الوضع الليلي" title="تبديل الوضع الليلي">☾</button><button class="iconbtn" onclick="openWishlist()" aria-label="المفضلة">♡ <span id="wishCount">0</span></button><button class="iconbtn" onclick="openCart()" aria-label="سلة المشتريات">🛒 <span id="cartCount">0</span></button></div>
 </div><nav class="nav"><a href="#home" onclick="showHome()">الرئيسية</a><a href="#products">كل المنتجات</a><a href="#products" onclick="setCategory('مدرسي')">شنط مدرسية</a><a href="#products" onclick="setCategory('ظهر')">شنط ظهر</a><a href="#benefits">مميزاتنا</a><a href="#contact">تواصل معنا</a></nav></header>
 <main id="homeView">
-<section class="hero"><div class="heroBox"><div><div class="eyebrow">SHIELD BAGS STORE</div><h1><span>شنط مميزة</span> لكل الأذواق</h1><p>جودة عالية .. تصاميم عصرية .. وأسعار مناسبة. جهّز شنطتك المفضلة من SHIELD BAGS STORE.</p><a href="#products" class="cta">تسوق المنتجات ←</a></div><div class="heroArt" aria-label="صور شنط حقيقية من المتجر"><div class="bag-showcase"><img src="assets/products/FB_IMG_1792672234943.png" alt="شنطة أطفال باستيل"><img src="assets/products/FB_IMG_1792672321265.png" alt="شنطة أطفال سبايدرمان"><img src="assets/products/FB_IMG_1792672806551.png" alt="شنطة ظهر زيتوني"></div><small>صور حقيقية من منتجات SHIELD BAGS STORE</small></div></div></section>
+<section class="hero"><div class="heroBox"><div><div class="eyebrow">SHIELD</div><h1><span>B A G S&nbsp; S T O R E</span></h1><p>STYLE&nbsp; • &nbsp;QUALITY&nbsp; • &nbsp;EVERYDAY</p><a href="#products" class="cta">تسوق المنتجات ←</a></div><div class="heroArt" aria-label="صور شنط حقيقية من المتجر"><div class="bag-showcase"><img src="assets/products/FB_IMG_1792672234943.png" alt="شنطة أطفال باستيل"><img src="assets/products/FB_IMG_1792672321265.png" alt="شنطة أطفال سبايدرمان"><img src="assets/products/FB_IMG_1792672806551.png" alt="شنطة ظهر زيتوني"></div><small>صور حقيقية من منتجات SHIELD BAGS STORE</small></div></div></section>
 <section class="wrap" id="promotions"><div class="sectionhead"><div><h2>عروض المتجر</h2><p>تابع عروض SHIELD BAGS STORE</p></div></div><div class="promo-carousel"><button class="promo-arrow promo-prev" type="button" onclick="changePromo(-1)" aria-label="العرض السابق">‹</button><a class="promo-card" id="promoSlide" href="https://wa.me/201000379944?text=أريد الاستفسار عن عرض 50%25" target="_blank" rel="noopener"><img id="promoImage" src="assets/promos/offer-50-percent.svg" alt="عرض خصم 50 بالمئة على الشنط"></a><button class="promo-arrow promo-next" type="button" onclick="changePromo(1)" aria-label="العرض التالي">›</button><div class="promo-dots" id="promoDots"><button class="active" onclick="showPromo(0)" aria-label="العرض الأول"></button><button onclick="showPromo(1)" aria-label="العرض الثاني"></button></div></div></section>
 <section class="wrap" id="products"><div class="sectionhead"><div><h2>تسوّق الشنط</h2><p>اكتشف موديلات SHIELD BAGS STORE</p></div><span id="resultCount" style="font-size:12px;color:var(--muted)"></span></div>
 <div class="filters"><button class="filter active" onclick="setCategory('الكل',this)">كل المنتجات</button><button class="filter" onclick="setCategory('مدرسي',this)">شنط مدرسية</button><button class="filter" onclick="setCategory('ظهر',this)">شنط ظهر</button><button class="filter" onclick="document.getElementById('promotions').scrollIntoView({behavior:'smooth'})">العروض</button></div>

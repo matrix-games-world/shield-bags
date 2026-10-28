@@ -183,6 +183,20 @@ body.dark-mode{background-color:#0d1110}
  body.dark-mode:before{opacity:.095}
 }
 
+
+.promo-card{display:block;overflow:hidden;border-radius:10px;background:transparent}
+.promo-card img{display:block;width:100%;height:auto;opacity:.78;transition:opacity .25s ease,transform .35s ease;object-fit:contain}
+.promo-card:hover img{opacity:.94;transform:scale(1.015)}
+.detail-main-photo{position:relative;perspective:1400px;touch-action:pan-y;cursor:grab;overflow:hidden}
+.detail-main-photo:after{content:"اسحب الصورة يمينًا ويسارًا للتدوير";position:absolute;bottom:12px;left:50%;transform:translateX(-50%);padding:7px 12px;border-radius:30px;background:#0009;color:#fff;font-size:12px;white-space:nowrap;pointer-events:none}
+.detail-main-photo.is-dragging{cursor:grabbing;touch-action:none}
+.detail-main-photo img{transform-style:preserve-3d;will-change:transform;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.detail-main-photo.is-dragging img{filter:drop-shadow(0 24px 18px #00000032)}
+body.dark-mode .promo-card img{opacity:.72}
+body.dark-mode .promo-card:hover img{opacity:.9}
+@media(max-width:700px){.detail-main-photo:after{font-size:11px;bottom:8px}.promo-card img{opacity:.82}}
+@media(prefers-reduced-motion:reduce){.promo-card img{transition:none}}
+
 </style>
 </head>
 <body>
@@ -263,6 +277,13 @@ function openProduct(id){
  const gallery=document.createElement('div');layout.appendChild(gallery);
  const main=document.createElement('div');main.className='detail-main-photo';gallery.appendChild(main);
  const mainImg=document.createElement('img');mainImg.id='detailMainImage';mainImg.alt=p.name;mainImg.src=first;main.appendChild(mainImg);
+ let dragX=0,dragY=0,startX=0,startY=0,baseX=0,baseY=0,dragging=false;
+ mainImg.draggable=false;
+ main.addEventListener('pointerdown',e=>{dragging=true;startX=e.clientX;startY=e.clientY;baseX=dragX;baseY=dragY;main.classList.add('is-dragging');main.setPointerCapture(e.pointerId);e.preventDefault()});
+ main.addEventListener('pointermove',e=>{if(!dragging)return;dragX=Math.max(-55,Math.min(55,baseX+(e.clientX-startX)*.45));dragY=Math.max(-18,Math.min(18,baseY-(e.clientY-startY)*.22));mainImg.style.transform='rotateY('+dragX+'deg) rotateX('+dragY+'deg) scale(0.96)'});
+ const finishDrag=()=>{dragging=false;main.classList.remove('is-dragging')};
+ main.addEventListener('pointerup',finishDrag);main.addEventListener('pointercancel',finishDrag);
+
  const thumbs=document.createElement('div');thumbs.className='detail-thumbs';gallery.appendChild(thumbs);
  pics.forEach((src,i)=>{const b=document.createElement('button');if(src===first)b.className='active';const im=document.createElement('img');im.src=src;im.alt='صورة '+(i+1);b.appendChild(im);b.onclick=()=>{mainImg.src=src;thumbs.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active')};thumbs.appendChild(b)});
  const info=document.createElement('div');info.className='detail-info';layout.appendChild(info);

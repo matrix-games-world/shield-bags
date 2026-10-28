@@ -197,18 +197,37 @@ body.dark-mode .promo-card:hover img{opacity:.9}
 @media(max-width:700px){.detail-main-photo:after{font-size:11px;bottom:8px}.promo-card img{opacity:.82}}
 @media(prefers-reduced-motion:reduce){.promo-card img{transition:none}}
 
+
+/* Search field must behave only as a product search, not an account credential field */
+.search input[type="search"]{appearance:none;-webkit-appearance:none;min-width:0}
+.search input[type="search"]::-webkit-search-cancel-button{-webkit-appearance:searchfield-cancel-button}
+.search input[type="search"]::-webkit-credentials-auto-fill-button{visibility:hidden;display:none!important;pointer-events:none;position:absolute;right:0}
+.search input[type="search"]::-webkit-contacts-auto-fill-button{visibility:hidden;display:none!important;pointer-events:none;position:absolute;right:0}
+/* One fitted promo card with arrows and dots */
+.promo-carousel{position:relative;max-width:900px;margin:0 auto 18px;padding:0 46px 28px}
+.promo-card{display:block;width:100%;max-width:100%;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:transparent;box-shadow:0 8px 24px #0000000a}
+.promo-card img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;opacity:1!important;transition:opacity .2s ease}
+.promo-arrow{position:absolute;z-index:2;top:50%;transform:translateY(-50%);width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:var(--card,#fff);color:var(--ink,#111);font-size:30px;line-height:1;cursor:pointer;box-shadow:0 3px 12px #0002}
+.promo-prev{left:0}.promo-next{right:0}
+.promo-dots{position:absolute;left:0;right:0;bottom:3px;display:flex;gap:8px;justify-content:center}
+.promo-dots button{width:8px;height:8px;border:0;border-radius:50%;background:#a9aaa5;padding:0;cursor:pointer}
+.promo-dots button.active{background:var(--ink,#111);transform:scale(1.25)}
+body.dark-mode .promo-arrow{background:#1a211d;color:#fff;border-color:#39443c}
+body.dark-mode .promo-dots button.active{background:#fff}
+@media(max-width:600px){.promo-carousel{padding:0 34px 25px}.promo-arrow{width:30px;height:30px;font-size:24px}.promo-card{border-radius:7px}}
+
 </style>
 </head>
 <body>
 <div class="top">أهلاً بيك في SHIELD BAGS STORE — شنط تجمع بين الجودة والشكل المميز</div>
 <header class="header"><div class="headin">
 <a class="brand" href="#" style="text-decoration:none" aria-label="SHIELD BAGS STORE"><div class="brandmark"><img src="assets/shield-logo.png" alt="SHIELD BAGS STORE"></div></a>
-<div class="search"><input id="search" placeholder="دور على الشنطة اللي بتدور عليها..." aria-label="بحث عن المنتجات"><button onclick="renderProducts()">⌕</button></div>
+<div class="search"><input id="search" type="search" name="product-search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="search" data-lpignore="true" data-1p-ignore="true" data-bwignore="true" placeholder="دور على الشنطة اللي بتدور عليها..." aria-label="بحث عن المنتجات" role="searchbox"><button onclick="renderProducts()">⌕</button></div>
 <div class="actions"><button class="iconbtn theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="تبديل الوضع الليلي" title="تبديل الوضع الليلي">☾</button><button class="iconbtn" onclick="openWishlist()" aria-label="المفضلة">♡ <span id="wishCount">0</span></button><button class="iconbtn" onclick="openCart()" aria-label="سلة المشتريات">🛒 <span id="cartCount">0</span></button></div>
 </div><nav class="nav"><a href="#home" onclick="showHome()">الرئيسية</a><a href="#products">كل المنتجات</a><a href="#products" onclick="setCategory('مدرسي')">شنط مدرسية</a><a href="#products" onclick="setCategory('ظهر')">شنط ظهر</a><a href="#benefits">مميزاتنا</a><a href="#contact">تواصل معنا</a></nav></header>
 <main id="homeView">
 <section class="hero"><div class="heroBox"><div><div class="eyebrow">SHIELD BAGS STORE</div><h1><span>شنط مميزة</span> لكل الأذواق</h1><p>جودة عالية .. تصاميم عصرية .. وأسعار مناسبة. جهّز شنطتك المفضلة من SHIELD BAGS STORE.</p><a href="#products" class="cta">تسوق المنتجات ←</a></div><div class="heroArt" aria-label="صور شنط حقيقية من المتجر"><div class="bag-showcase"><img src="assets/products/FB_IMG_1792672234943.png" alt="شنطة أطفال باستيل"><img src="assets/products/FB_IMG_1792672321265.png" alt="شنطة أطفال سبايدرمان"><img src="assets/products/FB_IMG_1792672806551.png" alt="شنطة ظهر زيتوني"></div><small>صور حقيقية من منتجات SHIELD BAGS STORE</small></div></div></section>
-<section class="wrap" id="promotions"><div class="sectionhead"><div><h2>عروض المتجر</h2><p>تابع عروض SHIELD BAGS STORE</p></div></div><div class="promo-grid"><a class="promo-card" href="https://wa.me/201000379944?text=أريد الاستفسار عن عرض 50%25" target="_blank" rel="noopener"><img src="assets/promos/offer-50-percent.jpg" alt="عرض خصم 50 بالمئة على الشنط"></a><a class="promo-card" href="https://wa.me/201000379944?text=أريد الاستفسار عن عرض اشتري 3 واحصل على 1 مجانا" target="_blank" rel="noopener"><img src="assets/promos/offer-buy-3-get-1.jpg" alt="عرض اشتري ثلاثة واحصل على واحدة مجانًا"></a></div></section>
+<section class="wrap" id="promotions"><div class="sectionhead"><div><h2>عروض المتجر</h2><p>تابع عروض SHIELD BAGS STORE</p></div></div><div class="promo-carousel"><button class="promo-arrow promo-prev" type="button" onclick="changePromo(-1)" aria-label="العرض السابق">‹</button><a class="promo-card" id="promoSlide" href="https://wa.me/201000379944?text=أريد الاستفسار عن عرض 50%25" target="_blank" rel="noopener"><img id="promoImage" src="assets/promos/offer-50-percent.jpg" alt="عرض خصم 50 بالمئة على الشنط"></a><button class="promo-arrow promo-next" type="button" onclick="changePromo(1)" aria-label="العرض التالي">›</button><div class="promo-dots" id="promoDots"><button class="active" onclick="showPromo(0)" aria-label="العرض الأول"></button><button onclick="showPromo(1)" aria-label="العرض الثاني"></button></div></div></section>
 <section class="wrap" id="products"><div class="sectionhead"><div><h2>تسوّق الشنط</h2><p>اكتشف موديلات SHIELD BAGS STORE</p></div><span id="resultCount" style="font-size:12px;color:var(--muted)"></span></div>
 <div class="filters"><button class="filter active" onclick="setCategory('الكل',this)">كل المنتجات</button><button class="filter" onclick="setCategory('مدرسي',this)">شنط مدرسية</button><button class="filter" onclick="setCategory('ظهر',this)">شنط ظهر</button><button class="filter" onclick="document.getElementById('promotions').scrollIntoView({behavior:'smooth'})">العروض</button></div>
 <div class="products" id="productsGrid"></div>
@@ -317,6 +336,21 @@ document.getElementById('productForm').addEventListener('submit',e=>{e.preventDe
 function renderAdminProducts(){document.getElementById('adminProducts').innerHTML=products.map(p=>'<div class="adminitem"><div><strong>'+esc(p.name)+'</strong><div style="font-size:12px;color:#777">'+money(p.price)+'</div></div><div><button onclick="editProduct(\''+p.id+'\')">تعديل</button> <button onclick="deleteProduct(\''+p.id+'\')">حذف</button></div></div>').join('')}
 function editProduct(id){let p=products.find(x=>x.id===id);if(!p)return;let f=document.getElementById('productForm');Object.keys(p).forEach(k=>{if(f.elements[k])f.elements[k].value=p[k]??''});f.elements.id.value=p.id;f.scrollIntoView({behavior:'smooth'})}
 function deleteProduct(id){if(confirm('متأكد إنك عايز تحذف المنتج؟')){products=products.filter(p=>p.id!==id);persist();renderProducts();renderAdminProducts()}}
+
+const promoItems=[
+ {src:'assets/promos/offer-50-percent.jpg',alt:'عرض خصم 50 بالمئة على الشنط',url:'https://wa.me/201000379944?text=أريد الاستفسار عن عرض 50%25'},
+ {src:'assets/promos/offer-buy-3-get-1.jpg',alt:'عرض اشتري ثلاثة واحصل على واحدة مجانًا',url:'https://wa.me/201000379944?text=أريد الاستفسار عن عرض اشتري 3 واحصل على 1 مجانا'}
+];
+let promoIndex=0;
+function showPromo(i){
+ promoIndex=(i+promoItems.length)%promoItems.length;
+ const item=promoItems[promoIndex],link=document.getElementById('promoSlide'),img=document.getElementById('promoImage');
+ if(!link||!img)return;
+ img.src=item.src;img.alt=item.alt;link.href=item.url;
+ document.querySelectorAll('#promoDots button').forEach((b,n)=>b.classList.toggle('active',n===promoIndex));
+}
+function changePromo(step){showPromo(promoIndex+step)}
+
 document.getElementById('year').textContent=new Date().getFullYear();updateCounts();renderProducts();
 </script>
 </body></html>

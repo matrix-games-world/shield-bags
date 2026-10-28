@@ -168,6 +168,19 @@ body.dark-mode .detail-main-photo{background:radial-gradient(ellipse at 50% 40%,
 }
 @media(prefers-reduced-motion:reduce){.photo img.product-main-image,.detail-main-photo img{transition:none}}
 
+
+/* Full-site brand watermark: black artwork in light mode, white artwork in night mode */
+body{position:relative;isolation:isolate;background-color:var(--page,#fff)}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-repeat:no-repeat;background-position:center center;background-size:min(78vw,760px) auto;opacity:.055}
+body:not(.dark-mode):before{background-image:url("assets/shield-logo-original-ink.png");opacity:.065}
+body.dark-mode:before{background-image:url("assets/shield-logo.png");opacity:.075}
+.heroBox:before{background-image:none!important;opacity:0!important}
+@media(max-width:700px){
+ body:before{background-position:center center;background-size:105vw auto}
+ body:not(.dark-mode):before{opacity:.055}
+ body.dark-mode:before{opacity:.065}
+}
+
 </style>
 </head>
 <body>

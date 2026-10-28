@@ -216,6 +216,110 @@ body.dark-mode .promo-arrow{background:#1a211d;color:#fff;border-color:#39443c}
 body.dark-mode .promo-dots button.active{background:#fff}
 @media(max-width:600px){.promo-carousel{padding:0 34px 25px}.promo-arrow{width:30px;height:30px;font-size:24px}.promo-card{border-radius:7px}}
 
+
+/* Cinematic SHIELD storefront layout inspired by the supplied reference */
+:root{--green:#d9e7c3;--green2:#eaf1df;--cream:#121719;--ink:#f4f5f2;--muted:#aab1b3;--line:#394044;--gold:#d8e7bd}
+html{scroll-behavior:smooth}
+body{background:#0c1114!important;color:#f4f5f2!important;background-image:radial-gradient(ellipse at 50% -10%,#354149 0%,#11191d 52%,#080d10 100%)!important;font-family:Arial,Tahoma,sans-serif}
+.top{background:#11181bd9!important;color:#e8ece8!important;border:0!important;padding:8px 16px;font-size:11px}
+.header{position:absolute;top:0;left:0;right:0;background:#11181b9c!important;border-bottom:1px solid #ffffff17!important;backdrop-filter:blur(14px);z-index:20}
+.headin{max-width:1420px;min-height:68px;padding:10px 24px;gap:24px}
+.brand{color:#fff!important;min-width:160px}.brandmark{width:70px;height:52px}.brandmark img{filter:brightness(0) invert(1)!important;opacity:.95}
+.brandtext{color:#fff!important;letter-spacing:3px;font-size:19px}.brand small{color:#d3d8d5!important;font-size:7px;letter-spacing:3px!important}
+.search{background:#ffffff20!important;border:1px solid #ffffff2b!important;border-radius:30px!important;backdrop-filter:blur(12px)}
+.search input{color:#fff!important;padding:10px 15px}.search input::placeholder{color:#d0d3d2!important}.search button{color:#fff!important}
+.actions{gap:7px}.iconbtn{background:transparent!important;color:#f4f5f2!important;border:0!important;border-radius:50%!important;padding:9px 11px!important;font-size:19px}
+.nav{max-width:1420px;padding:0 24px 12px!important;gap:32px;direction:rtl}
+.nav a{color:#e8e9e7!important;font-size:13px!important}.nav a:hover{color:#d8e7bd!important}
+.hero{max-width:none!important;width:100%;margin:0!important;padding:0!important}
+.heroBox{position:relative;isolation:isolate;overflow:hidden;border:0!important;border-radius:0!important;min-height:540px;padding:135px max(calc((100vw - 1350px)/2),6vw) 45px!important;grid-template-columns:minmax(280px,.75fr) minmax(420px,1.25fr)!important;gap:20px;background:
+linear-gradient(90deg,rgba(7,12,15,.94) 0%,rgba(9,15,18,.78) 34%,rgba(10,15,18,.38) 65%,rgba(7,12,15,.65) 100%),
+radial-gradient(ellipse at 76% 82%,#6a6d68 0%,#343a3b 18%,#1b2428 43%,#0b1114 78%)!important}
+.heroBox:before{content:"";position:absolute;inset:-8%;z-index:-1;pointer-events:none;background:url("assets/shield-logo.png") no-repeat 52% 38%/min(78vw,1000px) auto;opacity:.065!important;filter:grayscale(1) brightness(2)}
+.heroBox:after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(0deg,#080d10 0%,transparent 24%,transparent 78%,#10161960 100%)!important;display:block}
+.heroBox>*{position:relative;z-index:1}
+.heroBox>div:first-child{align-self:center;max-width:430px}
+.eyebrow{font-size:clamp(34px,4vw,54px)!important;letter-spacing:7px!important;color:#fff!important;font-weight:900;line-height:1.05}
+.hero h1{font-size:clamp(12px,1.2vw,16px)!important;letter-spacing:6px!important;font-weight:400!important;margin:9px 0 14px!important;color:#fff!important}
+.hero h1 span{color:#fff!important}
+.hero p{font-size:12px!important;letter-spacing:3px;line-height:1.8!important;color:#e1e4e2!important}
+.cta{background:transparent!important;color:#fff!important;border:1px solid #fff!important;border-radius:30px!important;padding:11px 22px!important;font-size:12px!important}
+.cta:hover{background:#fff!important;color:#111!important}
+.heroArt{align-self:end;display:flex;flex-direction:column;justify-content:end;min-width:0}
+.bag-showcase{min-height:330px!important;gap:0!important;align-items:end!important;filter:drop-shadow(0 22px 20px #0008)!important}
+.bag-showcase img{width:33%!important;height:clamp(250px,30vw,390px)!important;object-fit:contain!important;filter:drop-shadow(0 15px 12px #0009)!important}
+.bag-showcase img:nth-child(2){transform:translateY(-20px) scale(1.12)!important}
+.heroArt small{font-size:0!important;margin:0!important}
+.wrap{max-width:1420px!important;margin:28px auto!important;padding:0 24px!important}
+.sectionhead{margin-bottom:15px!important}
+.sectionhead h2{color:#fff!important;font-size:17px!important;font-weight:700!important}
+.sectionhead p{color:#a9b0b1!important}
+#promotions{margin-top:0!important}
+.promo-carousel{max-width:none!important;padding:0 42px 20px!important;margin:0 auto!important}
+.promo-card{border:1px solid #ffffff36!important;border-radius:14px!important;background:#171e21!important;box-shadow:none!important;max-height:190px;display:flex!important;align-items:center;justify-content:center}
+.promo-card img{width:100%!important;height:170px!important;max-height:170px!important;object-fit:cover!important;opacity:.92!important}
+.promo-arrow{background:#101619bb!important;color:#fff!important;border-color:#ffffff55!important;width:34px!important;height:34px!important}
+.promo-dots{bottom:0!important}
+.promo-dots button{background:#77807e!important}.promo-dots button.active{background:#d8e7bd!important}
+.filters{display:none!important}
+.products{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:16px!important}
+.product{background:#151b1e!important;border:1px solid #3a4245!important;border-radius:12px!important;overflow:hidden!important;transition:border-color .2s,transform .2s!important}
+.product:hover{border-color:#a9c58c!important;transform:translateY(-2px)!important;box-shadow:0 10px 24px #0004!important}
+.photo{height:clamp(150px,14vw,220px)!important;background:linear-gradient(145deg,#222a2d,#111719)!important;border:0!important;border-radius:0!important;padding:6px!important}
+.photo img{object-fit:contain!important;padding:4px!important;filter:drop-shadow(0 12px 10px #0008)!important}
+.tag{background:#243326!important;color:#e0edcf!important;border:1px solid #607354!important;border-radius:20px!important;font-size:9px!important;padding:4px 7px!important}
+.heart{background:#141a1cdd!important;color:#fff!important;border:0!important}
+.pbody{padding:10px 11px!important}
+.pbody h3{color:#f4f5f2!important;font-size:11px!important;margin-bottom:4px!important}
+.desc{display:none!important}
+.price{color:#d5e6bb!important;font-size:13px!important;margin:6px 0 0!important}
+.add{display:none!important}
+.photo-thumbs{background:#151b1e!important}
+.features{display:none!important}
+.notice{display:none!important}
+footer{background:#0a0f11!important;color:#f3f4f2!important;border-top:1px solid #ffffff1b!important}
+footer p{color:#aab1b3!important}
+.product-detail-view{color:#fff!important}
+.detail-main-photo{background:#151b1e!important;border-color:#3a4245!important}
+.detail-thumbs button{background:#151b1e!important;border-color:#3a4245!important}
+.detail-info h1{color:#fff!important}.detail-info .price{color:#d5e6bb!important}
+.detail-back{background:#151b1e!important;color:#fff!important}
+.mobile-bottom-nav{background:#101619!important;border-color:#303a3d!important}
+.bottom-item{color:#f4f5f2!important}
+body.dark-mode .promo-card img{opacity:.92!important}
+@media(max-width:1000px){.products{grid-template-columns:repeat(3,minmax(0,1fr))!important}.heroBox{grid-template-columns:minmax(230px,.8fr) minmax(300px,1.2fr)!important;min-height:460px;padding-left:5vw!important;padding-right:5vw!important}.bag-showcase{min-height:270px!important}.bag-showcase img{height:clamp(220px,31vw,310px)!important}}
+@media(max-width:650px){
+ .top{font-size:10px!important}
+ .header{position:relative!important;top:auto!important}
+ .headin{min-height:0;padding:8px 12px!important;gap:7px!important}
+ .brand{min-width:0!important;flex:1}.brandmark{width:47px!important;height:42px!important}.brandtext{font-size:14px!important;letter-spacing:2px!important}
+ .search{order:3;flex-basis:100%;border-radius:25px!important}
+ .actions{gap:0!important}.iconbtn{padding:7px 8px!important;font-size:17px!important}
+ .nav{padding:0 13px 10px!important;gap:20px!important}
+ .hero{padding:0!important}
+ .heroBox{padding:28px 18px 18px!important;min-height:0!important;grid-template-columns:1fr!important;gap:4px!important;background:
+ linear-gradient(180deg,rgba(8,13,16,.82),rgba(8,13,16,.55)),
+ radial-gradient(ellipse at 65% 70%,#41484a 0%,#1a2327 50%,#0b1114 100%)!important}
+ .heroBox>div:first-child{max-width:none!important}
+ .eyebrow{font-size:35px!important;letter-spacing:4px!important}
+ .hero h1{font-size:11px!important;letter-spacing:4px!important}
+ .hero p{font-size:11px!important;letter-spacing:1.5px!important;max-width:100%!important}
+ .cta{padding:9px 18px!important}
+ .bag-showcase{min-height:195px!important}
+ .bag-showcase img{height:clamp(175px,54vw,230px)!important;width:33%!important}
+ .bag-showcase img:nth-child(2){transform:translateY(-12px) scale(1.09)!important}
+ .wrap{padding:0 12px!important;margin:23px auto!important}
+ .sectionhead h2{font-size:16px!important}
+ .promo-carousel{padding:0 32px 20px!important}
+ .promo-card{max-height:none!important;border-radius:9px!important}
+ .promo-card img{height:auto!important;max-height:none!important;object-fit:contain!important}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px 9px!important}
+ .photo{height:clamp(175px,52vw,245px)!important}
+ .pbody{padding:9px!important}.pbody h3{font-size:12px!important}.price{font-size:13px!important}
+ .product-detail-view{padding:0 12px!important}
+ .detail-main-photo{height:clamp(330px,100vw,500px)!important}
+}
+
 </style>
 </head>
 <body>
@@ -266,7 +370,7 @@ function toggleTheme(){
   try{localStorage.setItem('shield-bags-theme',dark?'dark':'light')}catch(e){}
 }
 (function initTheme(){
-  let saved='light';try{saved=localStorage.getItem('shield-bags-theme')||'light'}catch(e){}
+  let saved='dark';try{saved=localStorage.getItem('shield-bags-theme')||'dark'}catch(e){}
   if(saved==='dark')document.body.classList.add('dark-mode');
   const btn=document.getElementById('themeToggle');
   if(btn){const dark=document.body.classList.contains('dark-mode');btn.textContent=dark?'☀':'☾';btn.title=dark?'التحويل للوضع الفاتح':'التحويل للوضع الداكن';btn.setAttribute('aria-label',btn.title);}

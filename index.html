@@ -458,6 +458,40 @@ body.dark-mode .promo-card img{opacity:1!important}
 @keyframes cartCountBump{0%{transform:scale(1)}55%{transform:scale(1.45)}100%{transform:scale(1)}}
 @media(prefers-reduced-motion:reduce){.cart-count-bump,.cart-fly-to{animation:none!important}}
 
+
+/* Fix: make the add-to-cart button visible again */
+#productsGrid .pbody .add,
+#productDetail .detail-info .detail-add{
+ display:flex!important;visibility:visible!important;opacity:1!important;
+ align-items:center;justify-content:center;gap:7px;
+ width:100%!important;min-height:43px;padding:11px 14px!important;
+ margin:12px 0 2px!important;position:relative;z-index:3;
+ background:#fff!important;color:#111!important;border:1px solid #222!important;
+ border-radius:3px!important;font-size:13px!important;font-weight:700!important;
+ line-height:1.4;cursor:pointer!important;
+}
+#productsGrid .pbody .add:hover,
+#productDetail .detail-info .detail-add:hover{background:#111!important;color:#fff!important}
+/* Keep bag photos natural: no 3D tilt and only a subtle, smooth enlargement */
+.photo{perspective:none!important}
+.photo img.product-main-image{
+ image-rendering:auto!important;backface-visibility:hidden;
+ transform:none!important;transition:transform .28s ease!important;
+ filter:drop-shadow(0 8px 8px #00000012)!important;
+}
+.product:hover .photo img.product-main-image{
+ transform:scale(1.035)!important;filter:drop-shadow(0 10px 9px #00000018)!important;
+}
+.detail-main-photo{perspective:none!important;touch-action:pan-y}
+.detail-main-photo img{
+ image-rendering:auto!important;backface-visibility:hidden;
+ transform:none!important;transition:transform .28s ease!important;
+}
+.detail-main-photo img:hover{transform:scale(1.025)!important}
+@media(max-width:700px){
+ .product:hover .photo img.product-main-image{transform:scale(1.025)!important}
+}
+
 </style>
 </head>
 <body>
@@ -538,12 +572,8 @@ function openProduct(id){
  const gallery=document.createElement('div');layout.appendChild(gallery);
  const main=document.createElement('div');main.className='detail-main-photo';gallery.appendChild(main);
  const mainImg=document.createElement('img');mainImg.id='detailMainImage';mainImg.alt=p.name;mainImg.src=first;main.appendChild(mainImg);
- let dragX=0,dragY=0,startX=0,startY=0,baseX=0,baseY=0,dragging=false;
  mainImg.draggable=false;
- main.addEventListener('pointerdown',e=>{dragging=true;startX=e.clientX;startY=e.clientY;baseX=dragX;baseY=dragY;main.classList.add('is-dragging');main.setPointerCapture(e.pointerId);e.preventDefault()});
- main.addEventListener('pointermove',e=>{if(!dragging)return;dragX=Math.max(-55,Math.min(55,baseX+(e.clientX-startX)*.45));dragY=Math.max(-18,Math.min(18,baseY-(e.clientY-startY)*.22));mainImg.style.transform='rotateY('+dragX+'deg) rotateX('+dragY+'deg) scale(0.96)'});
- const finishDrag=()=>{dragging=false;main.classList.remove('is-dragging')};
- main.addEventListener('pointerup',finishDrag);main.addEventListener('pointercancel',finishDrag);
+ mainImg.style.transform='none';
 
  const thumbs=document.createElement('div');thumbs.className='detail-thumbs';gallery.appendChild(thumbs);
  pics.forEach((src,i)=>{const b=document.createElement('button');if(src===first)b.className='active';const im=document.createElement('img');im.src=src;im.alt='صورة '+(i+1);b.appendChild(im);b.onclick=()=>{mainImg.src=src;thumbs.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active')};thumbs.appendChild(b)});

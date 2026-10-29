@@ -1,15 +1,31 @@
 rules_version = '2';
 
-// Public storefront catalog. Only authenticated users whose admins/{uid}
-// document was bootstrapped by the project owner can change products.
+// Assumed data model
+// products/{productId}: public product catalog fields written only by admins.
+// admins/{uid}: role == "admin"; project owner bootstraps this document in Console.
+// No customer/order documents are stored in Firestore by this storefront.
 service cloud.firestore {
   match /databases/{database}/documents {
-    function signedIn() {
+    function isAuthenticated() {
       return request.auth != null;
     }
 
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function uidUnchanged() {
+      return !('uid' in request.resource.data)
+        || request.resource.data.uid == request.auth.uid;
+    }
+
+    function uidNotModified() {
+      return !('uid' in request.resource.data)
+        || request.resource.data.uid == resource.data.uid;
+    }
+
     function isAdmin() {
-      return signedIn()
+      return isAuthenticated()
         && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
         && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
     }
@@ -21,6 +37,21 @@ service cloud.firestore {
           && (value.matches('^https://.*') || value.matches('^assets/.*')));
     }
 
+    function validImageList(images) {
+      return images is list
+        && images.size() <= 10
+        && (images.size() < 1 || safeImage(images[0]))
+        && (images.size() < 2 || safeImage(images[1]))
+        && (images.size() < 3 || safeImage(images[2]))
+        && (images.size() < 4 || safeImage(images[3]))
+        && (images.size() < 5 || safeImage(images[4]))
+        && (images.size() < 6 || safeImage(images[5]))
+        && (images.size() < 7 || safeImage(images[6]))
+        && (images.size() < 8 || safeImage(images[7]))
+        && (images.size() < 9 || safeImage(images[8]))
+        && (images.size() < 10 || safeImage(images[9]));
+    }
+
     function validProduct(data) {
       return data.keys().hasOnly(['name', 'price', 'category', 'description', 'image', 'images', 'tag'])
         && data.keys().hasAll(['name', 'price', 'category'])
@@ -30,24 +61,27 @@ service cloud.firestore {
         && (!('description' in data) || (data.description is string && data.description.size() <= 1500))
         && (!('tag' in data) || (data.tag is string && data.tag.size() <= 80))
         && (!('image' in data) || safeImage(data.image))
-        && (!('images' in data) || (data.images is list && data.images.size() <= 10));
+        && (!('images' in data) || validImageList(data.images));
     }
 
     match /products/{productId} {
+      // Product listings are public so visitors can browse the storefront.
       allow read: if true;
-      allow create, update: if isAdmin() && validProduct(request.resource.data);
+      allow create: if isAdmin() && uidUnchanged() && validProduct(request.resource.data);
+      allow update: if isAdmin() && uidNotModified() && validProduct(request.resource.data);
       allow delete: if isAdmin();
     }
 
-    // Each signed-in user may read only their own admin marker. A project
-    // owner must create this document in Firebase Console to bootstrap admin.
     match /admins/{uid} {
-      allow get: if signedIn() && (request.auth.uid == uid || isAdmin());
+      // A signed-in account can check only its own admin marker.
+      allow get: if isOwner(uid) || isAdmin();
       allow list: if isAdmin();
+      // Bootstrap the first admin document manually in Firebase Console.
+      // Afterwards, only an existing admin can manage admin markers.
       allow create, update, delete: if isAdmin();
     }
 
-    // Deny all access to every other collection by default.
+    // Default deny for all other Firestore paths.
     match /{document=**} {
       allow read, write: if false;
     }

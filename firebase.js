@@ -22,6 +22,7 @@ const db = getFirestore(app);
 
 const productsRef = collection(db, "products");
 let currentAdmin = null;
+let cloudCatalogLoaded = false;
 
 function productDocument(product) {
   const { id, ...fields } = product;
@@ -31,7 +32,8 @@ function productDocument(product) {
 }
 
 onSnapshot(productsRef, (snapshot) => {
-  if (snapshot.empty) return;
+  if (snapshot.empty && !cloudCatalogLoaded) return;
+  cloudCatalogLoaded = true;
   const products = snapshot.docs.map((item) => ({ id: item.id, ...item.data() }));
   window.shieldApplyCloudProducts?.(products);
 }, (error) => {

@@ -1,0 +1,55 @@
+rules_version = '2';
+
+// Public storefront catalog. Only authenticated users whose admins/{uid}
+// document was bootstrapped by the project owner can change products.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function safeImage(value) {
+      return value == null
+        || (value is string
+          && value.size() <= 500
+          && (value.matches('^https://.*') || value.matches('^assets/.*')));
+    }
+
+    function validProduct(data) {
+      return data.keys().hasOnly(['name', 'price', 'category', 'description', 'image', 'images', 'tag'])
+        && data.keys().hasAll(['name', 'price', 'category'])
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 120
+        && (data.price == null || (data.price is number && data.price >= 0 && data.price <= 10000000))
+        && data.category is string && data.category in ['مدرسي', 'ظهر', 'عروض']
+        && (!('description' in data) || (data.description is string && data.description.size() <= 1500))
+        && (!('tag' in data) || (data.tag is string && data.tag.size() <= 80))
+        && (!('image' in data) || safeImage(data.image))
+        && (!('images' in data) || (data.images is list && data.images.size() <= 10));
+    }
+
+    match /products/{productId} {
+      allow read: if true;
+      allow create, update: if isAdmin() && validProduct(request.resource.data);
+      allow delete: if isAdmin();
+    }
+
+    // Each signed-in user may read only their own admin marker. A project
+    // owner must create this document in Firebase Console to bootstrap admin.
+    match /admins/{uid} {
+      allow get: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow list: if isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Deny all access to every other collection by default.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
